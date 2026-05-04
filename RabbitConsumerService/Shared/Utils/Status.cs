@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RabbitConsumerService.Models
+namespace RabbitConsumerService.Shared.Utils
 {
     public enum Status
     {
         Pending,
+        InProgress,
         Processed,
         Failed,
         Success

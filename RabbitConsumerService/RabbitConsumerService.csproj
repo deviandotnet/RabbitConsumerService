@@ -22,4 +22,12 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.14" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Consumers\" />
+    <Folder Include="Messaging\" />
+    <Folder Include="Persistence\" />
+    <Folder Include="Services\" />
+    <Folder Include="Shared\Messaging\" />
+  </ItemGroup>
 </Project>
