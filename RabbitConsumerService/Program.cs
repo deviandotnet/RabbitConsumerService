@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using RabbitConsumerService.Handler;
 
 namespace RabbitConsumerService
 {
@@ -14,7 +15,7 @@ namespace RabbitConsumerService
                 options.UseSqlServer(builder.Configuration.GetConnectionString("InternalDatabase"));
             });
 
-            builder.Services.AddHostedService<Worker>();
+            builder.Services.AddHostedService<RabbitConsumer>();
 
             var host = builder.Build();
             host.Run();
