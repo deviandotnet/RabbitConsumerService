@@ -18,7 +18,9 @@ namespace RabbitConsumerService
             builder.Services.AddHostedService<RabbitConsumer>();
 
             var host = builder.Build();
+
             host.Run();
+
         }
     }
 }

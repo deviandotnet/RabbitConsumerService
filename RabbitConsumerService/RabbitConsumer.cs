@@ -23,11 +23,13 @@ namespace RabbitConsumerService
             _factory = new ConnectionFactory()
             {
                 HostName = "localhost",
+                Port = 15672
             };
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            _logger.LogInformation("RabbitMQ Consumer is starting.");
             using var connection = await _factory.CreateConnectionAsync();
             using var channel = await connection.CreateChannelAsync();
 
@@ -39,6 +41,8 @@ namespace RabbitConsumerService
                 arguments: null);
 
             var consumer = new AsyncEventingBasicConsumer(channel);
+
+            _logger.LogInformation("RabbitMQ Consumer is waiting for messages.");
 
             consumer.ReceivedAsync += async (sender, eventArgs) =>
             {
@@ -87,7 +91,9 @@ namespace RabbitConsumerService
                 autoAck: false,
                 consumer: consumer);
 
+            _logger.LogInformation("RabbitMQ Consumer is running.");
             await Task.Delay(Timeout.Infinite, stoppingToken);
+            _logger.LogInformation("RabbitMQ Consumer is stopping.");
         }
     }
 }
